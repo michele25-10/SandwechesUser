@@ -169,7 +169,6 @@ class User extends BaseController
 
     public function registration($name, $surname, $email, $password)
     {
-
         $sql = sprintf(
             "INSERT INTO user (name , surname, email, password, active)
         VALUES ('%s', '%s', '%s', '%s', 1)",

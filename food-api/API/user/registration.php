@@ -14,11 +14,12 @@ if (empty($data->name) || empty($data->surname) || empty($data->email) || empty(
 $db = new Database();
 $db_conn = $db->connect();
 $user = new User($db_conn);
+$hash = $data->password; 
+$password = password_hash($hash, PASSWORD_BCRYPT);
 
-if ($user->registration($data->name, $data->surname, $data->email, $data->password) == true) {
-    $userID = $user->login($data->email, $data->password);
-    echo json_encode(["message" => "Registration completed", "userID" => $userID]);
+if ($user->registration($data->name, $data->surname, $data->email, $password) == true) {
+    echo json_encode(["message" => "1"]);
 } else {
-    echo json_encode(["message" => "Registration failed successfully "]);
+    echo json_encode(["message" => "-1"]);
 }
 ?>
