@@ -23,7 +23,7 @@
             <input type="password" id="inputPassword" class="form-control mb-4" placeholder="Password" name = "password" required>
 
             <?php
-/*session_start();
+session_start();
 
 include_once dirname(__FILE__) . '/function/login.php';
 
@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   {
     echo('<p class="text-danger">Campo richiesto</p>');
   }
-}*/
+}
 ?>
 
             <div class="row">
