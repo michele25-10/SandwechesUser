@@ -1,7 +1,7 @@
 <?php
 function logon($data)
     {
-        $url = 'http://localhost/webApp_sandweches/food-api/API/user/registration.php';
+        $url = 'http://localhost/sandweches_user/food-api/API/user/registration.php';
 
         $curl = curl_init($url);    //inizializza una nuova sessione di cUrl
         //Curl contiene il return del curl_init 
@@ -26,8 +26,6 @@ function logon($data)
         curl_close($curl);  //chiudo sessione
 
         $response = json_decode($responseJson);     //decodifico la response dal json
-
-    var_dump($response->message); 
         
         if ($response->message == "1")        //response == true vuol dire sessione senza errori
         {

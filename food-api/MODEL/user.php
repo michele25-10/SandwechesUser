@@ -134,6 +134,7 @@ class User extends BaseController
 
     public function login($email, $password)
     {
+        var_dump($password); 
         $sql = sprintf("SELECT email, password, id
         FROM `user`
         where 1=1 ");
