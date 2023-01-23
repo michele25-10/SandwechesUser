@@ -16,18 +16,17 @@ $db = new Database();
 $db_conn = $db->connect();
 $user = new User($db_conn);
 
-$hash = $data->password; 
+$hash = $data->password;  
 $password = password_hash($hash, PASSWORD_BCRYPT);
-echo json_encode($password); 
 
 $result = $user->login($data->email, $password);
 
-/*if ($result != false) {
+if ($result != false) {
     http_response_code(200);
     echo json_encode(["response" => true, "userID" => $result]);
 } else {
     http_response_code(401);
     echo json_encode(["response" => false]);
-}*/
+}
 die();
 ?>
