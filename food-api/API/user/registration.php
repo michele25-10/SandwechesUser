@@ -15,7 +15,7 @@ $db = new Database();
 $db_conn = $db->connect();
 $user = new User($db_conn);
 $hash = $data->password; 
-$password = password_hash($hash, PASSWORD_BCRYPT);
+$password = password_hash($hash, CRYPT_SHA256);
 
 if ($user->registration($data->name, $data->surname, $data->email, $password) == true) {
     echo json_encode(["message" => "1"]);

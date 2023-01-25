@@ -17,7 +17,7 @@ $db_conn = $db->connect();
 $user = new User($db_conn);
 
 $hash = $data->password;  
-$password = password_hash($hash, PASSWORD_BCRYPT);
+$password = password_hash($hash, CRYPT_SHA256);
 
 $result = $user->login($data->email, $password);
 
