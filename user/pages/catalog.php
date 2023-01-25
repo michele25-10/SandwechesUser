@@ -12,28 +12,43 @@
 
 <body>
     <?php require_once(__DIR__ . '\navbar.php'); ?>
-    <div class="d-flex justify-content-center">
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-outline-warning">Panini</button>
-                <button type="button" class="btn btn-outline-warning">Bevande</button>
-                <button type="button" class="btn btn-outline-warning">Snack</button>
-        </div>
+
+    <div class="d-flex justify-content-center" style="margin-bottom: 10px; margin-top: 10px; ">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-warning">Panini</button>
+            <button type="button" class="btn btn-warning">Bevande</button>
+            <button type="button" class="btn btn-warning">Snack</button>
         </div>
     </div>
 
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+
+            <?php
+            include_once dirname(__FILE__) . '/../function/product.php';
+
+            $prod_arr = getArchiveProduct();
+
+            if ($prod_arr != -1) {
+                foreach ($prod_arr as $row) {
+                    echo ('
             <div class="col">
-                <div class="card">
-                    <img src="..." class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to
-                            additional content. This content is a little bit longer.</p>
-                        <h2>19.00€</h2>
-                    </div>
+            <div class="card">
+                <img src="../assets/img/panino.jpeg" class="card-img-top" alt="panino">
+                <div class="card-body">
+                    <h5 class="card-title">' . $row['name'] . '</h5>
+                    <h4>' . $row['Price'] . '</h4>
+                    <a href="product.php?id=' . $row['ID'] . '">
+                    <button class="btn btn-warning">Visualizza</button>
+                    </a>
                 </div>
             </div>
+        </div>
+            ');
+                }
+            }
+            ?>
+
         </div>
     </div>
 
