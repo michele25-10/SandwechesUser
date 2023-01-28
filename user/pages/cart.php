@@ -24,47 +24,67 @@ if (empty($_SESSION['user_id'])) {
 
   <div class="container fluid" style="padding: 20px;">
     <h2 style="margin-bottom:20px">Carrello:</h2>
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
-      <?php
-      include_once dirname(__FILE__) . '/../function/cart.php';
+    <div class="row">
+      <div class="col-8">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
+          <?php
+          include_once dirname(__FILE__) . '/../function/cart.php';
 
-      $id = $_SESSION['user_id'];
-      $cart = getCartUser($id);
-      ?>
-      <?php if ($cart == -1): ?>
-        <div class="d-flex justify-content-center">
-          <h1 class="text-danger"><b>Non hai prodotti nel Carrello</b></h1>
-        </div>
-      <?php endif ?>
-
-      <?php if ($cart != -1): ?>
-        <?php foreach ($cart as $row): ?>
-          <div class="col">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2"
-              style="border-color: orange; border-style: solid; border-radius: 10px; ">
-              <div class="col-3" style="padding: 10px; ">
-                <img src="../assets/img/panino.jpeg"></img>
-              </div>
-              <div class="col" style="vertical-align: middle;">
-                <p><b>id:</b>
-                  <?php echo $row['product'] ?>
-                </p>
-                <h5><b>prodotto:</b>
-                  <?php echo $row['name'] ?>
-                </h5>
-                <h7><b>quantity:</b>
-                  <?php echo $row['quantity'] ?>
-                </h7>
-                <h5><b>price:</b>
-                  <?php echo $row['price'] ?>€
-                  <h5>
-              </div>
+          $id = $_SESSION['user_id'];
+          $cart = getCartUser($id);
+          ?>
+          <?php if ($cart == -1): ?>
+            <div class="d-flex justify-content-center">
+              <h1 class="text-danger"><b>Non hai prodotti nel Carrello</b></h1>
             </div>
+          <?php endif ?>
+
+          <?php if ($cart != -1): ?>
+            <?php foreach ($cart as $row): ?>
+              <div class="col">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2"
+                  style="border-color: orange; border-style: solid; border-radius: 10px; ">
+                  <div class="col-3" style="padding: 10px; ">
+                    <img src="../assets/img/panino.jpeg"></img>
+                  </div>
+                  <div class="col" style="vertical-align: middle;">
+                    <p><b>id:</b>
+                      <?php echo $row['product'] ?>
+                    </p>
+                    <h5><b>prodotto:</b>
+                      <?php echo $row['name'] ?>
+                    </h5>
+                    <h7><b>quantity:</b>
+                      <?php echo $row['quantity'] ?>
+                    </h7>
+                    <h5><b>price:</b>
+                      <?php echo $row['price'] ?>€
+                      <h5>
+                        <button class="btn btn-danger" type="submit">Rimuovi</button>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach ?>
+          <?php endif ?>
+        </div>
+      </div>
+      <div class="col-4">
+        <h1>Dettagli carrello</h1>
+        <hr>
+        </hr>
+        <h2>Spese dei prodotti:<b>150€</b></h2>
+        <h3>Spese di trasporto:<b>0€</b></h3>
+        <hr>
+        </hr>
+        <div class="row">
+          <div class="col">
+            <h2>Totale:</h2>
           </div>
-        <?php endforeach ?>
-      <?php endif ?>
-
-
+          <div class="col">
+            <h2><b>1235€</h2></b>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

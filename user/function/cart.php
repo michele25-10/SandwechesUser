@@ -63,4 +63,8 @@ function addProductCart($data)
     return $response->message;
 }
 
+function removeProduct()
+{
+
+}
 ?>
