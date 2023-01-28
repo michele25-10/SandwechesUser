@@ -59,7 +59,7 @@ if (empty($_SESSION['user_id'])) {
                                         <?php echo $row['name'] ?>
                                     </h5>
                                     <h4>
-                                        <?php echo $row['Price'] ?>
+                                        <?php echo $row['Price'] ?>€
                                     </h4>
                                     <a href="product.php?id=<?php echo $row['ID'] ?>">
                                         <button class="btn btn-warning">Visualizza</button>
@@ -87,7 +87,7 @@ if (empty($_SESSION['user_id'])) {
                                         <?php echo $row['name'] ?>
                                     </h5>
                                     <h4>
-                                        <?php echo $row['Price'] ?>
+                                        <?php echo $row['Price'] ?>€
                                     </h4>
                                     <a href="product.php?id=<?php echo $row['ID'] ?>">
                                         <button class="btn btn-warning">Visualizza</button>
@@ -97,6 +97,9 @@ if (empty($_SESSION['user_id'])) {
                         </div>
 
                     <?php endforeach ?>
+                <?php endif ?>
+                <?php if ($prod_arr == -1 && $_POST['tag'] != ""): ?>
+                    <h2 class="text-danger"><b>Non ci sono prodotti in questa categoria</b></h2>
                 <?php endif ?>
                 <?php
             }

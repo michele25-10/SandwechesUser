@@ -33,7 +33,7 @@ class ProductController extends BaseController
     {
         $sql = "SELECT distinct p.id as 'ID',p.name as 'Nome prodotto', p.quantity as 'Quantita', p.price as 'Prezzo'
         from product p
-        where 1=1; 
+        where p.quantity>0; 
         ";
 
         $result = $this->conn->query($sql);
@@ -167,11 +167,11 @@ class ProductController extends BaseController
 
     public function getArchiveProductsLikeWithTag($tag)
     {
-        $sql = "SELECT distinct p.id as 'ID',p.name as 'Nome prodotto', p.price as 'Prezzo', t.id as 'Tag'
+        $sql = "SELECT distinct p.id as 'ID',p.name as 'Nome prodotto', p.price as 'Prezzo'
         from product p
         left join product_tag pt on pt.product=p.id
         left join tag t on t.id=pt.tag
-        where t.id = $tag;
+        where t.id = $tag AND p.quantity>0;
         ";
 
         $result = $this->conn->query($sql);
