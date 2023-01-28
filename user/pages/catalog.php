@@ -30,13 +30,13 @@ if (empty($_SESSION['user_id'])) {
         <?php if ($tag_arr != "-1"): ?>
             <form method="post" style="margin: 10px 40px;">
                 <div class="input-group mb-3">
-                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <select class="form-select" id="inputGroupSelect02">
                         <option selected>Tutte le categorie</option>
                         <?php foreach ($tag_arr as $row): ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
                         <?php endforeach ?>
                     </select>
-                    <label class="btn btn-success" type="submit">Cerca</label>
+                    <label class="input-group-text btn btn-warning" for="inputGroupSelect02" type="submit">Cerca</label>
                 </div>
             </form>
         <?php endif ?>
@@ -44,7 +44,6 @@ if (empty($_SESSION['user_id'])) {
 
     <div class="container">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-
             <?php
             include_once dirname(__FILE__) . '/../function/product.php';
 
