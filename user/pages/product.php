@@ -54,24 +54,45 @@ if (empty($_SESSION['user_id'])) {
           </p>
           <div class="col">
             <h4>
-              <?php echo $prod[0]['price'] ?>
+              <?php echo $prod[0]['price'] ?>€
             </h4>
 
             <div class="row">
-              <div class="col-6">
-                <div class="input-group quantity" style="width: 150px">
-                  <div class="input-group-prepend decrement-btn" style="cursor: pointer">
-                    <span class="input-group-text text-white" style="background-color: #dc3545">-</span>
-                  </div>
-                  <input type="text" name="qty" class="qty-input form-control" maxlength="3" max="50" value="1">
-                  <div class="input-group-append  increment-btn" style="cursor: pointer">
-                    <span class="input-group-text text-white" style="background-color: #28a745">+</span>
+              <form method="post">
+                <div class="col-6">
+                  <div class="input-group quantity" style="width: 150px">
+                    <div class="input-group-prepend decrement-btn" style="cursor: pointer">
+                      <span class="input-group-text text-white" style="background-color: #dc3545">-</span>
+                    </div>
+                    <input type="text" name="qty" class="qty-input form-control" maxlength="3" max="50" value="1">
+                    <div class="input-group-append  increment-btn" style="cursor: pointer">
+                      <span class="input-group-text text-white" style="background-color: #28a745">+</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-6">
-                <button class="btn btn-success">Carrello</button>
-              </div>
+                <div class="col-6" style="margin-top:10px;">
+
+                  <button class="btn btn-success">Carrello</button>
+                </div>
+              </form>
+
+              <?php
+              include_once dirname(__FILE__) . '/../function/cart.php';
+
+              if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $data = array(
+                  'user' => $_SESSION['user_id'],
+                  'product' => $_GET['id'],
+                  'quantity' => $_POST['qty'],
+                );
+                $add = addProductCart($data);
+                if ($add == "1") {
+                  echo ('<br><p class="text-success"><b>Prodotto aggiunto</b></p>');
+                } else {
+                  echo ('<br><p class="text-danger"><b>Errore</b></p>');
+                }
+              }
+              ?>
             </div>
           </div>
         </div>

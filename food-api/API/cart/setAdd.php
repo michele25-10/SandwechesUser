@@ -23,10 +23,10 @@ $queryAddItem = $cart->setCartItemsAdd($data->product, $data->user);
 $result = $conn->query($queryAddItem);
 if ($result) {
     http_response_code(200);
-    echo json_encode(["message" => "Added 1 quantity to the item"]);
+    echo json_encode(["message" => "1"]);
 } else {
     http_response_code(503);
-    echo json_encode(["message" => "Couldn't add the quantity to the item"]);
+    echo json_encode(["message" => "-1"]);
 }
 die();
 ?>

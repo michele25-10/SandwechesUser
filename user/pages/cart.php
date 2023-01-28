@@ -28,12 +28,12 @@ if (empty($_SESSION['user_id'])) {
       <?php
       include_once dirname(__FILE__) . '/../function/cart.php';
 
-      $id = 2; //$_SESSION['user_id'];
+      $id = $_SESSION['user_id'];
       $cart = getCartUser($id);
       ?>
       <?php if ($cart == -1): ?>
         <div class="d-flex justify-content-center">
-          <h1 class="text-danger"><b>Errore, server non risponde</b></h1>
+          <h1 class="text-danger"><b>Non hai prodotti nel Carrello</b></h1>
         </div>
       <?php endif ?>
 
