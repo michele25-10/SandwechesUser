@@ -4,7 +4,6 @@ session_start();
 if (empty($_SESSION['user_id'])) {
     header('location: ../index.php');
 }
-
 ?>
 
 <!doctype html>
@@ -30,13 +29,13 @@ if (empty($_SESSION['user_id'])) {
         <?php if ($tag_arr != "-1"): ?>
             <form method="post" style="margin: 10px 40px;">
                 <div class="input-group mb-3">
-                    <select class="form-select" id="inputGroupSelect02">
-                        <option selected>Tutte le categorie</option>
+                    <select class="form-select" name="tag" id="inputGroupSelect02">
+                        <option selected value="">Tutte le categorie</option>
                         <?php foreach ($tag_arr as $row): ?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
                         <?php endforeach ?>
                     </select>
-                    <label class="input-group-text btn btn-warning" for="inputGroupSelect02" type="submit">Cerca</label>
+                    <input class="input-group-text btn btn-warning" type="submit" value="Cerca">
                 </div>
             </form>
         <?php endif ?>
@@ -47,25 +46,59 @@ if (empty($_SESSION['user_id'])) {
             <?php
             include_once dirname(__FILE__) . '/../function/product.php';
 
-            $prod_arr = getArchiveProduct();
+            if ($_SERVER['REQUEST_METHOD'] == 'GET' || $_POST['tag'] == "") {
+                $prod_arr = getArchiveProduct();
+                ?>
+                <?php if ($prod_arr != -1): ?>
+                    <?php foreach ($prod_arr as $row): ?>
+                        <div class="col">
+                            <div class="card">
+                                <img src="../assets/img/panino.jpeg" class="card-img-top" alt="panino">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <?php echo $row['name'] ?>
+                                    </h5>
+                                    <h4>
+                                        <?php echo $row['Price'] ?>
+                                    </h4>
+                                    <a href="product.php?id=<?php echo $row['ID'] ?>">
+                                        <button class="btn btn-warning">Visualizza</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
 
-            if ($prod_arr != -1) {
-                foreach ($prod_arr as $row) {
-                    echo ('
-            <div class="col">
-            <div class="card">
-                <img src="../assets/img/panino.jpeg" class="card-img-top" alt="panino">
-                <div class="card-body">
-                    <h5 class="card-title">' . $row['name'] . '</h5>
-                    <h4>' . $row['Price'] . '</h4>
-                    <a href="product.php?id=' . $row['ID'] . '">
-                    <button class="btn btn-warning">Visualizza</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-            ');
-                }
+                    <?php endforeach ?>
+                <?php endif ?>
+                <?php
+            }
+            include_once dirname(__FILE__) . '/../function/product.php';
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_POST['tag'] != "") {
+                $prod_arr = getProductsTag($_POST['tag']);
+                ?>
+                <?php if ($prod_arr != -1): ?>
+                    <?php foreach ($prod_arr as $row): ?>
+                        <div class="col">
+                            <div class="card">
+                                <img src="../assets/img/panino.jpeg" class="card-img-top" alt="panino">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <?php echo $row['name'] ?>
+                                    </h5>
+                                    <h4>
+                                        <?php echo $row['Price'] ?>
+                                    </h4>
+                                    <a href="product.php?id=<?php echo $row['ID'] ?>">
+                                        <button class="btn btn-warning">Visualizza</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php endforeach ?>
+                <?php endif ?>
+                <?php
             }
             ?>
 

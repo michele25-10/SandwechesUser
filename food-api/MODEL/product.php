@@ -1,5 +1,6 @@
 <?php
 use LDAP\Result;
+
 require("base.php");
 class ProductController extends BaseController
 {
@@ -28,14 +29,15 @@ class ProductController extends BaseController
         $this->SendOutput($result, JSON_OK);
     }
 
-    public function GetArchiveProductsPaninara(){
+    public function GetArchiveProductsPaninara()
+    {
         $sql = "SELECT distinct p.id as 'ID',p.name as 'Nome prodotto', p.quantity as 'Quantita', p.price as 'Prezzo'
         from product p
         where 1=1; 
         ";
 
-$result = $this->conn->query($sql);
-$this->SendOutput($result, JSON_OK);
+        $result = $this->conn->query($sql);
+        $this->SendOutput($result, JSON_OK);
     }
     public function GetArchiveIngredients($product_ID) //mostra gli ingredienti di un singolo prodotto
 
@@ -163,14 +165,13 @@ $this->SendOutput($result, JSON_OK);
         $this->SendOutput($result, JSON_OK);
     }
 
-    public function getArchiveProductsLikeWithTag($name, $tag)
+    public function getArchiveProductsLikeWithTag($tag)
     {
-        $formattedName = str_replace("+", " ", $name);
         $sql = "SELECT distinct p.id as 'ID',p.name as 'Nome prodotto', p.price as 'Prezzo', t.id as 'Tag'
         from product p
         left join product_tag pt on pt.product=p.id
         left join tag t on t.id=pt.tag
-        where p.name LIKE  '%$formattedName%' AND t.id = $tag;
+        where t.id = $tag;
         ";
 
         $result = $this->conn->query($sql);
@@ -186,7 +187,7 @@ $this->SendOutput($result, JSON_OK);
         );
         $result = $this->conn->query($sql);
 
-        return $result; 
+        return $result;
     }
     public function addProductQuantity($id, $value)
     {
@@ -198,7 +199,7 @@ $this->SendOutput($result, JSON_OK);
         );
         $result = $this->conn->query($sql);
 
-        return $result; 
+        return $result;
     }
     public function removeProductQuantity($id, $value)
     {
@@ -210,6 +211,6 @@ $this->SendOutput($result, JSON_OK);
         );
         $result = $this->conn->query($sql);
 
-        return $result; 
+        return $result;
     }
 }
