@@ -1,18 +1,18 @@
 <?php
-    session_start();
+session_start();
 
-    // Verifica della presenza di un utente loggato
+// Verifica della presenza di un utente loggato
 
-    if(isset($_SESSION['user_id'])) {
-    
-        $_SESSION = []; // Reset dell'array di sessione
-    
-        session_destroy(); // Chiusura sessione
-        header('Location: ../login.php'); // Reindirizzamento
-        exit; // Fine script
+if (isset($_SESSION['user_id'])) {
 
-    } else {
-        header('Location: ../login.php'); // Reindirizzamento
-        exit; // Fine script
-    }
+    $_SESSION = []; // Reset dell'array di sessione
+
+    session_destroy(); // Chiusura sessione
+    header('Location: ../index.php'); // Reindirizzamento
+    exit; // Fine script
+
+} else {
+    header('Location: ../index.php'); // Reindirizzamento
+    exit; // Fine script
+}
 ?>

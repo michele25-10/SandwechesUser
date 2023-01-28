@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+if (empty($_SESSION['user_id'])) {
+    header('location: ../index.php');
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -44,9 +53,9 @@
                     "email" => $_POST['email'],
                     "password" => $_POST['password'],
                 );
-                $err = logon($data); 
-                if(isset($err)){
-                    echo ('<p class="text-danger">Errore nella registrazione, riprova più tardi!</p>'); 
+                $err = logon($data);
+                if (isset($err)) {
+                    echo ('<p class="text-danger">Errore nella registrazione, riprova più tardi!</p>');
                 }
             }
         }
