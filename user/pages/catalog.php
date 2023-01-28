@@ -23,11 +23,23 @@ if (empty($_SESSION['user_id'])) {
     <?php require_once(__DIR__ . '\navbar.php'); ?>
 
     <div class="d-flex justify-content-center" style="margin-bottom: 10px; margin-top: 10px; ">
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-warning">Panini</button>
-            <button type="button" class="btn btn-warning">Bevande</button>
-            <button type="button" class="btn btn-warning">Snack</button>
-        </div>
+        <?php
+        include_once dirname(__FILE__) . '/../function/product.php';
+        $tag_arr = getTag();
+        ?>
+        <?php if ($tag_arr != "-1"): ?>
+            <form method="post" style="margin: 10px 40px;">
+                <div class="input-group mb-3">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                        <option selected>Tutte le categorie</option>
+                        <?php foreach ($tag_arr as $row): ?>
+                            <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+                        <?php endforeach ?>
+                    </select>
+                    <label class="btn btn-success" type="submit">Cerca</label>
+                </div>
+            </form>
+        <?php endif ?>
     </div>
 
     <div class="container">
