@@ -25,7 +25,7 @@ if (empty($_SESSION['user_id'])) {
   <div class="container fluid" style="padding: 20px;">
     <h2 style="margin-bottom:20px">Carrello:</h2>
     <div class="row">
-      <div class="col-8">
+      <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-8">
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
           <?php
           include_once dirname(__FILE__) . '/../function/cart.php';
@@ -43,24 +43,26 @@ if (empty($_SESSION['user_id'])) {
             <?php foreach ($cart as $row): ?>
               <div class="col">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-2"
-                  style="border-color: orange; border-style: solid; border-radius: 10px; ">
-                  <div class="col-3" style="padding: 10px; ">
+                  style="border-color: orange; border-style: solid; border-radius: 10px; margin-top: 5px">
+                  <div class="col" style="padding: 10px; ">
                     <img src="../assets/img/panino.jpeg"></img>
                   </div>
                   <div class="col" style="vertical-align: middle;">
-                    <p><b>id:</b>
-                      <?php echo $row['product'] ?>
-                    </p>
                     <h5><b>prodotto:</b>
                       <?php echo $row['name'] ?>
                     </h5>
-                    <h7><b>quantity:</b>
+                    <h5><b>quantità:</b>
                       <?php echo $row['quantity'] ?>
-                    </h7>
-                    <h5><b>price:</b>
+                    </h5>
+                    <h5><b>prezzo:</b>
                       <?php echo $row['price'] ?>€
                       <h5>
-                        <button class="btn btn-danger" type="submit">Rimuovi</button>
+                        <form method="post">
+                          <button class="btn btn-danger" type="submit">Rimuovi</button>
+                        </form>
+                        <?php
+
+                        ?>
                   </div>
                 </div>
               </div>
@@ -68,7 +70,7 @@ if (empty($_SESSION['user_id'])) {
           <?php endif ?>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-4">
         <h1>Dettagli carrello</h1>
         <hr>
         </hr>
