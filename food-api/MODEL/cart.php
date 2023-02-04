@@ -8,7 +8,7 @@ class Cart
                 inner join `user` u on u.id = c.`user`
                 inner join product p on c.product = p.id
                 where c.user = '" . $user . "'
-                group by c.product;";
+                group by c.product and c.`user`;";
         return $sql;
     }
     function getCartItems($user)

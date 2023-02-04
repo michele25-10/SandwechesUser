@@ -103,7 +103,9 @@ if (empty($_SESSION['user_id'])) {
             </div>
           </div>
           <div class="row">
-            <button class="btn btn-success">Ordina ora!</button>
+            <a href="order.php">
+              <button class="btn btn-success">Ordina ora!</button>
+            </a>
           </div>
         </div>
       </div>
