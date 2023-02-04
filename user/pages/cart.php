@@ -104,7 +104,7 @@ if (empty($_SESSION['user_id'])) {
           </div>
           <div class="row">
             <a href="order.php">
-              <button class="btn btn-success">Ordina ora!</button>
+              <button class="btn btn-lg btn-success">Ordina ora!</button>
             </a>
           </div>
         </div>

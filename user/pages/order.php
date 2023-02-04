@@ -22,24 +22,22 @@ if (empty($_SESSION['user_id'])) {
 <body>
   <?php require_once(__DIR__ . '\navbar.php'); ?>
 
-  <div class="d-flex justify-content-center" style="margin-bottom: 10px; margin-top: 10px; ">
-    <?php
-    include_once dirname(__FILE__) . '/../function/order.php';
-    $status_arr = getStatus();
-    ?>
-    <?php if ($status_arr != "-1"): ?>
-      <form method="post" style="margin: 10px 40px;">
-        <div class="input-group mb-3">
-          <select class="form-select" name="tag" id="inputGroupSelect02">
-            <option selected value="">Tutte le categorie</option>
-            <?php foreach ($status_arr as $row): ?>
-              <option value="<?php echo $row['id'] ?>"><?php echo $row['description'] ?></option>
-            <?php endforeach ?>
-          </select>
-          <input class="input-group-text btn btn-warning" type="submit" value="Cerca">
+  <div class="container-fluid">
+    <form class="form" method="post">
+      <div class="row">
+        <div class="col-7 mx-auto">
+          <img class="mb-4" src="assets/img/logo.png" alt="" width="100%" height="">
         </div>
-      </form>
-    <?php endif ?>
+      </div>
+      <h1 class="h3 mb-3 fw-bold">I dati del tuo ordine</h1>
+      <label for="pickup" class="sr-only mb-2">Punto di consegna</label>
+      <input type="text" class="form-control mb-4" placeholder="Punto di consegna" name="pickup" required autofocus>
+      <label for="Break" class="sr-only mb-2">Orario</label>
+      <input type="password" class="form-control mb-4" placeholder="Orario" name="break" required>
+      <div class="row">
+        <button class="btn btn-lg btn-success btn-block mx-auto" type="submit">Conferma Ordine</button>
+      </div>
+    </form>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
@@ -48,3 +46,34 @@ if (empty($_SESSION['user_id'])) {
 </body>
 
 </html>
+
+<style>
+  html,
+  body {
+    height: 100%;
+  }
+
+
+  .form {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+  }
+
+  .form .checkbox {
+    font-weight: 400;
+  }
+
+  .form .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .form-order .form-control:focus {
+    z-index: 2;
+  }
+</style>
