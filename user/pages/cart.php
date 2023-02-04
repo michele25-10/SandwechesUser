@@ -61,7 +61,19 @@ if (empty($_SESSION['user_id'])) {
                           <button class="btn btn-danger" type="submit">Rimuovi</button>
                         </form>
                         <?php
+                        include_once dirname(__FILE__) . '/../function/cart.php';
 
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                          $_SERVER['REQUEST_METHOD'] = 'GET';
+                          $res = deleteProduct($row['product'], $_SESSION['user_id']);
+
+                          if ($res == "-1") {
+                            echo ("<p class=" . "text-danger" . ">Errore</p>");
+                          } else {
+                            header("Refresh:1");
+                          }
+
+                        }
                         ?>
                   </div>
                 </div>

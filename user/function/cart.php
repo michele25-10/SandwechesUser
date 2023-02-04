@@ -63,8 +63,14 @@ function addProductCart($data)
     return $response->message;
 }
 
-function removeProduct()
+function deleteProduct($id, $user)
 {
+    $url = 'http://localhost/sandweches_user/food-api/API/cart/deleteItem.php?user=' . $user . '&product=' . $id;
 
+    $json_data = file_get_contents($url);
+
+    $json_decode = json_decode($json_data);
+
+    return $json_decode;
 }
 ?>
