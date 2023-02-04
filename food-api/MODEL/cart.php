@@ -1,7 +1,16 @@
 <?php
 class Cart
 {
-
+    function getPrice($user)
+    {
+        $sql = "select sum(c.quantity * p.price) as price
+                from cart c
+                inner join `user` u on u.id = c.`user`
+                inner join product p on c.product = p.id
+                where c.user = '" . $user . "'
+                group by c.product;";
+        return $sql;
+    }
     function getCartItems($user)
     { //ritorna il carrello dell'utente con i relativi prodotti
         $sql = "select p.id, c.quantity, p.name, p.price, p.description, t.id as 'tag_id' ";

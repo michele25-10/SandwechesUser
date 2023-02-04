@@ -73,4 +73,16 @@ function deleteProduct($id, $user)
 
     return $json_decode;
 }
+
+function getPrice($user)
+{
+    $url = 'http://localhost/sandweches_user/food-api/API/cart/getPrice.php?user=' . $user;
+
+    $json_data = file_get_contents($url);
+
+    $json_decode = json_decode($json_data);
+
+    return $json_decode;
+
+}
 ?>
