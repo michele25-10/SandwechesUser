@@ -58,5 +58,33 @@ function getOrder($user)
     }
 }
 
+function getPickup()
+{
+    $url = 'http://localhost/sandweches_user/food-api/API/order/pickup/getPickup.php';
+
+    $json_data = file_get_contents($url);
+
+    if ($json_data != false) {
+        $decode_data = json_decode($json_data, $assoc = true);
+        $pickup_data = $decode_data;
+        $pickup_arr = array();
+        if (!empty($pickup_data)) {
+            foreach ($pickup_data as $pick) {
+                $pickup_record = array(
+                    "id" => $pick['id'],
+                    "name" => $pick['name'],
+                );
+                array_push($pickup_arr, $pickup_record);
+            }
+
+            return $pickup_arr;
+        } else {
+            return -1;
+        }
+    } else {
+        return -1;
+    }
+}
+
 
 ?>

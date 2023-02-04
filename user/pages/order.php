@@ -31,10 +31,28 @@ if (empty($_SESSION['user_id'])) {
       </div>
       <h1 class="h3 mb-3 fw-bold">I dati del tuo ordine</h1>
       <label for="pickup" class="sr-only mb-2">Punto di consegna</label>
-      <input type="text" class="form-control mb-4" placeholder="Punto di consegna" name="pickup" required autofocus>
-      <label for="Break" class="sr-only mb-2">Orario</label>
-      <input type="password" class="form-control mb-4" placeholder="Orario" name="break" required>
-      <div class="row">
+      <?php
+      include_once dirname(__FILE__) . '/../function/order.php';
+
+      $pick_arr = getPickup();
+      ?>
+      <?php if ($pick_arr != -1): ?>
+        <select class="form-select" name="pickup" id="inputGroupSelect02">
+          <option selected value="" disabled>Tutti i punti</option>
+          <?php foreach ($pick_arr as $row): ?>
+            <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+          <?php endforeach ?>
+        </select>
+      <?php endif ?>
+      <label for="break" class="sr-only mb-2">Orario</label>
+
+      <select class="form-select" name="break" id="inputGroupSelect02">
+        <option selected value="" disabled>Tutte le categorie</option>
+        <?php foreach ($tag_arr as $row): ?>
+          <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+        <?php endforeach ?>
+      </select>
+      <div class="row" style="margin-top: 10px; ">
         <button class="btn btn-lg btn-success btn-block mx-auto" type="submit">Conferma Ordine</button>
       </div>
     </form>
