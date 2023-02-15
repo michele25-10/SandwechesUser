@@ -102,9 +102,34 @@ if (empty($_SESSION['user_id'])) {
 
             </div>
           </div>
+          <hr>
+          <div>
+            <label for="pickup" class="sr-only mb-2">Punto di consegna</label>
+            <?php
+            include_once dirname(__FILE__) . '/../function/order.php';
+
+            $pick_arr = getPickup();
+            ?>
+            <?php if ($pick_arr != -1): ?>
+              <select class="form-select" name="pickup" id="inputGroupSelect02">
+                <option selected value="" disabled>Tutti i punti</option>
+                <?php foreach ($pick_arr as $row): ?>
+                  <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+                <?php endforeach ?>
+              </select>
+            <?php endif ?>
+            <label for="break" class="sr-only mb-2">Orario</label>
+
+            <select class="form-select" name="break" id="inputGroupSelect02">
+              <option selected value="" disabled>Tutte le categorie</option>
+              <?php foreach ($tag_arr as $row): ?>
+                <option value="<?php echo $row['id'] ?>"><?php echo $row['name'] ?></option>
+              <?php endforeach ?>
+            </select>
+          </div>
           <div class="row">
             <a href="order.php">
-              <button class="btn btn-lg btn-success">Ordina ora!</button>
+              <button class="btn btn-lg btn-success" id="ordina">Ordina ora!</button>
             </a>
           </div>
         </div>
@@ -118,3 +143,21 @@ if (empty($_SESSION['user_id'])) {
 </body>
 
 </html>
+
+
+<style>
+  hr {
+    border: 1;
+    height: 2px;
+    background-color: #CCC;
+  }
+
+  label {
+    margin-top: 5px;
+    font-weight: 500;
+  }
+
+  #ordina {
+    margin-top: 10px;
+  }
+</style>
